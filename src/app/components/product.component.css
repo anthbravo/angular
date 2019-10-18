@@ -1,0 +1,11 @@
+:host{
+    margin: 1em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    display: block;
+}
+
+img {
+    max-width: 100%;
+}
