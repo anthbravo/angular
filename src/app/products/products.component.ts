@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from '../product.model';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-products',
@@ -11,33 +12,13 @@ export class ProductsComponent implements OnInit {
 
   products: Array<Product>;
 
-  constructor() {
+  constructor(
+    private productService: ProductService
+  ) {
   }
 
   ngOnInit() {
-    this.products = [
-      {
-        id: '1',
-        image: 'http://lorempixel.com/400/500/',
-        title: 'Camisa Casual Azul',
-        price: 1000,
-        description: 'Material 100% algodon. Lavar a maquina a 40°C, no utilizar secadora.'
-      },
-      {
-        id: '2',
-        image: 'http://lorempixel.com/400/501/',
-        title: 'Camisa Casual Azul',
-        price: 1000,
-        description: 'Material 100% algodon. Lavar a maquina a 40°C, no utilizar secadora.'
-      },
-      {
-        id: '3',
-        image: 'http://lorempixel.com/400/502/',
-        title: 'Camisa Casual Azul',
-        price: 1000,
-        description: 'Material 100% algodon. Lavar a maquina a 40°C, no utilizar secadora.'
-      }
-    ];
+    this.products = this.productService.getAllProducts();
   }
 
   addCart(id: string) {
