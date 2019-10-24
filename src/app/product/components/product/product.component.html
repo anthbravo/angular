@@ -1,5 +1,5 @@
 <h3>{{product.title}}</h3>
 <img src="{{product.image}}" alt="">
 <strong>{{product.price}}</strong>
-<button (click)="selectedProduct()">Agregar Carrito</button>
+<button (click)="selectedProduct()" mat-raised-button color="primary">Agregar Carrito</button>
 <a routerLink="/products/{{product.id}}">Ver Detalle</a>
