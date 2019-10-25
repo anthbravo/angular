@@ -18,11 +18,20 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.products = this.productService.getAllProducts();
+    this.fetchProducts();
   }
 
   addCart(id: string) {
     console.log(id);
+  }
+
+  fetchProducts() {
+    this.productService.getAllProducts().subscribe(
+      products => {
+        products.forEach(product => product.image = 'http://lorempixel.com/400/500/');
+        this.products = products;
+      }
+    );
   }
 
 }

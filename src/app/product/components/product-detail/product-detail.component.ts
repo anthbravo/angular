@@ -21,7 +21,16 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params) => {
-        this.product = this.productService.getProduct(params.id);
+        this.fetchProduct(params.id);
+      }
+    );
+  }
+
+  fetchProduct(id: string) {
+    this.productService.getProduct(id).subscribe(
+      product => {
+        product.image = 'http://lorempixel.com/400/500/';
+        this.product = product;
       }
     );
   }

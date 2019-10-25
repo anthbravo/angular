@@ -1,43 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Product } from '../../model/product.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products: Array<Product> = [
-    {
-      id: '1',
-      image: 'http://lorempixel.com/400/500/',
-      title: 'Camisa Casual Azul',
-      price: 1000,
-      description: 'Material 100% algodon. Lavar a maquina a 40°C, no utilizar secadora.'
-    },
-    {
-      id: '2',
-      image: 'http://lorempixel.com/400/501/',
-      title: 'Camisa Casual Azul',
-      price: 1000,
-      description: 'Material 100% algodon. Lavar a maquina a 40°C, no utilizar secadora.'
-    },
-    {
-      id: '3',
-      image: 'http://lorempixel.com/400/502/',
-      title: 'Camisa Casual Azul',
-      price: 1000,
-      description: 'Material 100% algodon. Lavar a maquina a 40°C, no utilizar secadora.'
-    }
-  ];
-
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   getAllProducts() {
-    return this.products;
+    return this.httpClient.get<Product[]>('http://platzi-store.herokuapp.com/products');
   }
 
   getProduct(id: string) {
-    return this.products.find((product) => product.id === id);
+    return this.httpClient.get<Product>(`http://platzi-store.herokuapp.com/products/${id}`);
   }
 }
