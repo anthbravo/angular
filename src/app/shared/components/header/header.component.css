@@ -1,8 +1,7 @@
-.nav{
-    display: flex;
-    justify-content: space-evenly;
+.header {
+  width: 100%;
 }
 
-.nav__link{
-    background-color: lightcoral;
+.header__link--active {
+  background-color: lightcoral;
 }
