@@ -1,7 +1,10 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <div class="footer row center-xs">
-      <p>Todos los derechos anthbravo</p>
+      <mat-form-field>
+        <input [formControl]="emailField" matInput placeholder="Email">
+      </mat-form-field>
+      <button mat-raised-button [disabled]="emailField.invalid" (click)="sendEmail()">Enviar</button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

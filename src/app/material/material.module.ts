@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatListModule,
     ReactiveFormsModule,
-    LayoutModule
+    LayoutModule,
+    MatFormFieldModule
   ],
   exports: [
     MatButtonModule,
@@ -47,7 +49,8 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatListModule,
     ReactiveFormsModule,
-    LayoutModule
+    LayoutModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule { }
