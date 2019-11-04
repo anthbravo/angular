@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Product } from 'src/app/core/model/product.model';
-import { ProductService } from 'src/app/core/services/product/product.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { Product } from 'src/app/core/model/product.model';
+
+import { ProductService } from 'src/app/core/services/product/product.service';
+
+import { MyValidators } from 'src/app/utils/my-validators';
 
 @Component({
   selector: 'app-product-form',
@@ -43,7 +47,7 @@ export class ProductFormComponent {
       {
         id: ['', [Validators.required]],
         title: ['', [Validators.required]],
-        price: ['', [Validators.required]],
+        price: ['', [Validators.required, MyValidators.isPriceValid]],
         image: [''],
         description: ['', [Validators.required]],
       }
