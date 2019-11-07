@@ -29,12 +29,11 @@
                     <mat-form-field>
                         <input formControlName="price" type="number" matInput placeholder="precio">
                     </mat-form-field>
-                    <div *ngIf="productFormGroup.get('price').errors && 
-                                productFormGroup.get('price').dirty">
-                        <p *ngIf="productFormGroup.get('price').hasError('price_invalid')">
+                    <div *ngIf="priceField.errors && priceField.dirty">
+                        <p *ngIf="priceField.hasError('price_invalid')">
                             No puedes ingresar un monto mayor a 10000
                         </p>
-                        <p *ngIf="productFormGroup.get('price').hasError('required')">
+                        <p *ngIf="priceField.hasError('required')">
                             El campo es requerido
                         </p>
                     </div>

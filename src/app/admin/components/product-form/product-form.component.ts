@@ -54,4 +54,8 @@ export class ProductFormComponent {
     );
   }
 
+  get priceField() {
+    return this.productFormGroup.get('price');
+  }
+
 }
