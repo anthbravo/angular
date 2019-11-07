@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -13,7 +13,11 @@ import { MyValidators } from 'src/app/utils/my-validators';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
+
+  @Input() product: Product;
+
+  @Output() productEdited: EventEmitter<any> = new EventEmitter();
 
   productFormGroup: FormGroup;
 
@@ -25,21 +29,47 @@ export class ProductFormComponent {
     this.buildProductFormGroup();
   }
 
+  ngOnInit() {
+    this.initValuesForEdit();
+  }
+
   saveProduct(event: Event) {
     event.preventDefault();
 
     if (this.productFormGroup.valid) {
-      const newProduct: Product = this.productFormGroup.value;
-      this.productService.createProduct(newProduct).subscribe(
-        (product: Product) => {
-          this.router.navigate(['./admin/products']);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      const product: Product = this.productFormGroup.value;
+
+      if (this.product) {
+        this.updateProduct(product);
+      } else {
+        this.createProduct(product);
+      }
+
     }
 
+  }
+
+  createProduct(newProduct: Product) {
+    this.productService.createProduct(newProduct).subscribe(
+      (product: Product) => {
+        this.router.navigate(['./admin/products']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  updateProduct(updateProduct: Product) {
+    this.productService.updateProduct(updateProduct).subscribe(
+      (product: Product) => {
+        this.product = product;
+        this.backProductList();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   private buildProductFormGroup() {
@@ -52,6 +82,16 @@ export class ProductFormComponent {
         description: ['', [Validators.required]],
       }
     );
+  }
+
+  initValuesForEdit() {
+    if (this.product) {
+      this.productFormGroup.patchValue(this.product);
+    }
+  }
+
+  backProductList() {
+    this.productEdited.emit(this.product);
   }
 
   get priceField() {

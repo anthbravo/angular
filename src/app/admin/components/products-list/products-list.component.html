@@ -1,35 +1,40 @@
-<a mat-button routerLink="/admin/create">Nuevo Producto</a>
+<div *ngIf="!productForEdit">
+  <a mat-button routerLink="/admin/create">Nuevo Producto</a>
 
-<mat-table [dataSource]="products" class="mat-elevation-z8">
+  <mat-table [dataSource]="products" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="title">
-    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.title}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.title}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.price}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.price}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-    <mat-cell *matCellDef="let product">
-      <button mat-icon-button>
-        <mat-icon>create</mat-icon>
-      </button>
-      <button mat-icon-button (click)="deleteProduct(product.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <button mat-icon-button (click)="editProduct(product)" productEdited>
+          <mat-icon>create</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteProduct(product.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-</mat-table>
+  </mat-table>
+</div>
+
+<app-product-form *ngIf="productForEdit" [product]="productForEdit" (productEdited)="updateViewList($event)">
+</app-product-form>

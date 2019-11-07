@@ -13,6 +13,8 @@ export class ProductsListComponent implements OnInit {
   products: Product[];
   displayedColumns: string[] = ['id', 'title', 'price', 'actions'];
 
+  productForEdit: Product;
+
   constructor(
     private productService: ProductService
   ) { }
@@ -36,6 +38,17 @@ export class ProductsListComponent implements OnInit {
         }
       }
     );
+  }
+
+  editProduct(productForEdit: Product) {
+    this.productForEdit = productForEdit;
+  }
+
+  updateViewList(productEdited: Product) {
+    this.products = this.products.filter(product => product.id !== productEdited.id);
+    this.products.push(productEdited);
+
+    this.productForEdit = null;
   }
 
 }
