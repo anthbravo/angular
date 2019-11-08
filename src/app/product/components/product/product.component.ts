@@ -10,6 +10,8 @@ import {
     OnDestroy
 } from '@angular/core';
 
+import { CartService } from 'src/app/core/services/cart/cart.service';
+
 import { Product } from '../../../core/model/product.model';
 
 @Component(
@@ -23,7 +25,9 @@ export class ProductComponent implements OnInit, OnChanges, OnDestroy {
     @Input() product: Product;
     @Output() productSelected: EventEmitter<any> = new EventEmitter();
 
-    constructor() {
+    constructor(
+        private cartService: CartService
+    ) {
         console.log('1. constructor');
     }
 
@@ -44,7 +48,8 @@ export class ProductComponent implements OnInit, OnChanges, OnDestroy {
         console.log('5. ngOnDestroy');
     }
 
-    selectedProduct() {
+    addCart() {
         this.productSelected.emit(this.product.id);
+        this.cartService.addCart(this.product);
     }
 }
