@@ -1,0 +1,39 @@
+<div [formGroup]="loginFormGroup" class="login">
+    <div class="row">
+        <div class="col-xs-6">
+
+            <div class="row end-xs middle-xs">
+                <mat-form-field appearance="outline">
+                    <mat-label>email</mat-label>
+                    <input formControlName="email" matInput placeholder="@hola.com">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input formControlName="password" matInput placeholder=":)" type="password">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+            </div>
+
+        </div>
+
+
+        <div class="col-xs-6">
+            <div class="row start-xs middle-xs login--height">
+                <button [disabled]="loginFormGroup.invalid" mat-raised-button color="primary"
+                    (click)="login()">Login</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" *ngIf="errorMessage">
+        <mat-toolbar color="warn">
+            <mat-toolbar-row>
+                <span>{{errorMessage}}</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+
+</div>
