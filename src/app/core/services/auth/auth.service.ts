@@ -21,4 +21,8 @@ export class AuthService {
   logout() {
     return this.angularFireAuth.auth.signOut();
   }
+
+  hasUser() {
+    return this.angularFireAuth.authState;
+  }
 }

@@ -26,7 +26,6 @@ const routes: Routes = [
       },
       {
         path: 'contact',
-        canActivate: [AdminGuardGuard],
         loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
       {
@@ -35,13 +34,13 @@ const routes: Routes = [
       },
       {
         path: 'order',
-        canActivate: [AdminGuardGuard],
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
       }
     ]
   },
   {
     path: 'admin',
+    canActivate: [AdminGuardGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
