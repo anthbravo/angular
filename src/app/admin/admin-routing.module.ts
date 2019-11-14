@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { UserComponent } from './components/user/user.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,11 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       {
-        path: 'create',
+        path: 'create-user',
+        component: UserComponent
+      },
+      {
+        path: 'create-product',
         component: ProductFormComponent
       },
       {

@@ -1,0 +1,45 @@
+<div [formGroup]="userFormGroup" class="user">
+    <div class="row">
+        <div class="col-xs-6">
+
+            <div class="row end-xs middle-xs">
+                <mat-form-field appearance="outline">
+                    <mat-label>email</mat-label>
+                    <input formControlName="email" matInput placeholder="@hola.com">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input formControlName="password01" matInput placeholder=":)" type="password">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>repite password</mat-label>
+                    <input formControlName="password02" matInput placeholder=":)" type="password">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+            </div>
+
+        </div>
+
+
+        <div class="col-xs-6">
+            <div class="row start-xs middle-xs user--height">
+                <button [disabled]="userFormGroup.invalid" mat-raised-button color="primary"
+                    (click)="createUser()">Crear Usuario</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" *ngIf="errorMessage">
+        <mat-toolbar color="warn">
+            <mat-toolbar-row>
+                <span>{{errorMessage}}</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+
+</div>
