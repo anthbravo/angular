@@ -52,6 +52,13 @@
                     </mat-form-field>
                 </div>
             </div>
+
+            <div class="row" *ngIf="imageField">
+                <div class="col-xs">
+                    <img *ngIf="imageField.value" [src]="imageField.value" alt="">
+                    <input *ngIf="!idField.errors" type="file" (change)="uploadFile($event)">
+                </div>
+            </div>
         </mat-card-content>
 
         <mat-card-actions>

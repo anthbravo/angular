@@ -28,7 +28,6 @@ export class ProductsComponent implements OnInit {
   fetchProducts() {
     this.productService.getAllProducts().subscribe(
       products => {
-        products.forEach(product => product.image = 'http://lorempixel.com/400/500/');
         this.products = products;
       }
     );
